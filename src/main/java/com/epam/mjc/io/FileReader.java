@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FileReader {
 
-    public static Profile getDataFromFile(File file) {
+    public Profile getDataFromFile(File file) {
         StringBuilder stringBuilder = new StringBuilder();
 
         try (FileInputStream stream = new FileInputStream(file)) {
@@ -22,10 +22,10 @@ public class FileReader {
 
         List<String> res = Arrays.asList(stringBuilder.toString().split("\n"));
 
-        String name = res.get(0).split(": ")[1];
-        int age = Integer.parseInt(res.get(1).split(": ")[1]);
-        String email = res.get(2).split(": ")[1];
-        Long phone = Long.parseLong(res.get(3).split(": ")[1]);
+        String name = res.get(0).split("\\s+")[1];
+        int age = Integer.parseInt(res.get(1).split("\\s+")[1]);
+        String email = res.get(2).split("\\s+")[1];
+        Long phone = Long.parseLong(res.get(3).split("\\s+")[1]);
 
         return new Profile(name, age, email, phone);
     }
